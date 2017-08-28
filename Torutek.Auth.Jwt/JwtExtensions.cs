@@ -17,7 +17,7 @@ namespace Torutek.Auth.Jwt
 		/// </summary>
 		/// <param name="serviceCollection"></param>
 		/// <param name="issuer">The Issuer field for the JWTs</param>
-		/// <param name="secretKey">The secret key to be used to sign and validate JWTs</param>
+		/// <param name="secretKey">The secret key to be used to sign and validate JWTs. Should be big and kept secret</param>
 		/// <param name="environment"></param>
 		public static void AddJwtServices(this IServiceCollection serviceCollection, string issuer, string secretKey, IHostingEnvironment environment)
 		{

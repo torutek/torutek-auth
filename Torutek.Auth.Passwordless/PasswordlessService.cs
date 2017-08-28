@@ -11,7 +11,7 @@ namespace Torutek.Auth.Passwordless
 		/// <summary>
 		/// Generates a nonce for the given key (key will be returned when the returned nonce is provided to GetKeyFromNonce)
 		/// </summary>
-		Task GenerateNonce(string key);
+		Task<string> GenerateNonce(string key);
 
 		/// <summary>
 		/// Returns the key belonging to the given nonce if it exists, otherwise null
@@ -41,11 +41,13 @@ namespace Torutek.Auth.Passwordless
 		}
 
 		/// <inheritdoc />
-		public async Task GenerateNonce(string key)
+		public async Task<string> GenerateNonce(string key)
 		{
 			var nonce = GenerateNonce();
 
 			await _cache.SetAsync(nonce, Encoding.UTF8.GetBytes(key), new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) });
+
+			return nonce;
 		}
 
 		/// <inheritdoc />
