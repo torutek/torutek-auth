@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torutek.Auth", "Torutek.Auth\Torutek.Auth.csproj", "{886A7B90-3856-4701-AD00-119457B16C70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torutek.Auth.Jwt", "Torutek.Auth.Jwt\Torutek.Auth.Jwt.csproj", "{7BEEEDE2-69EC-43B8-9D28-2EAA1367E7A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Torutek.Auth.Passwordless", "Torutek.Auth.Passwordless\Torutek.Auth.Passwordless.csproj", "{AE68D1F8-CDC9-4267-884F-6E0998D2856E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{886A7B90-3856-4701-AD00-119457B16C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886A7B90-3856-4701-AD00-119457B16C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{886A7B90-3856-4701-AD00-119457B16C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BEEEDE2-69EC-43B8-9D28-2EAA1367E7A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BEEEDE2-69EC-43B8-9D28-2EAA1367E7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BEEEDE2-69EC-43B8-9D28-2EAA1367E7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BEEEDE2-69EC-43B8-9D28-2EAA1367E7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE68D1F8-CDC9-4267-884F-6E0998D2856E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE68D1F8-CDC9-4267-884F-6E0998D2856E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE68D1F8-CDC9-4267-884F-6E0998D2856E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE68D1F8-CDC9-4267-884F-6E0998D2856E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
