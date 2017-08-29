@@ -6,6 +6,9 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace Torutek.Auth.Passwordless
 {
+	/// <summary>
+	/// Manages Passwordless Authentication Concerns
+	/// </summary>
 	public interface IPasswordlessService
 	{
 		/// <summary>
