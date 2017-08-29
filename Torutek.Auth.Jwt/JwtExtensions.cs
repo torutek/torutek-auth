@@ -19,7 +19,8 @@ namespace Torutek.Auth.Jwt
 		/// <param name="issuer">The Issuer field for the JWTs</param>
 		/// <param name="secretKey">The secret key to be used to sign and validate JWTs. Should be big and kept secret</param>
 		/// <param name="environment"></param>
-		public static void AddJwtServices(this IServiceCollection serviceCollection, string issuer, string secretKey, IHostingEnvironment environment)
+		/// <param name="events">Optionally, you can provide an events object so you can handle JWT related events</param>
+		public static void AddJwtServices(this IServiceCollection serviceCollection, string issuer, string secretKey, IHostingEnvironment environment, JwtBearerEvents events = null)
 		{
 			var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 			var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
@@ -30,10 +31,10 @@ namespace Torutek.Auth.Jwt
 					options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 					options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 				})
-				.AddJwtBearer(o => CreateJwtBearerOptions(o, issuer, signingKey, environment));
+				.AddJwtBearer(o => CreateJwtBearerOptions(o, issuer, signingKey, environment, events));
 		}
 
-		private static void CreateJwtBearerOptions(JwtBearerOptions o, string issuer, SymmetricSecurityKey signingKey, IHostingEnvironment environment)
+		private static void CreateJwtBearerOptions(JwtBearerOptions o, string issuer, SymmetricSecurityKey signingKey, IHostingEnvironment environment, JwtBearerEvents events)
 		{
 			if (environment.IsDevelopment())
 			{
@@ -42,6 +43,10 @@ namespace Torutek.Auth.Jwt
 
 			o.Audience = issuer;
 			o.Authority = null;
+
+			if (events != null)
+				o.Events = events;
+
 			o.TokenValidationParameters = new TokenValidationParameters
 			{
 				ValidateIssuer = true,
