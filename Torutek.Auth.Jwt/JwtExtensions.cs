@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
@@ -63,7 +64,7 @@ namespace Torutek.Auth.Jwt
 
 				ClockSkew = TimeSpan.Zero,
 
-				NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+				NameClaimType = ClaimTypes.NameIdentifier
 			};
 		}
 	}
