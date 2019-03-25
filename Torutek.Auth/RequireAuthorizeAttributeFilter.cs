@@ -23,7 +23,7 @@ namespace Torutek.Auth
 				var desc = (ControllerActionDescriptor)context.ActionDescriptor;
 
 				var allAttrs = desc.MethodInfo.CustomAttributes.Concat(desc.ControllerTypeInfo.CustomAttributes);
-				if (!allAttrs.Any(attr => attr.AttributeType == typeof(AuthorizeAttribute) || attr.AttributeType == typeof(AllowAnonymousAttribute)))
+				if (!allAttrs.Any(attr => IsSameOrSubclass(typeof(AuthorizeAttribute), attr.AttributeType) || IsSameOrSubclass(typeof(AllowAnonymousAttribute), attr.AttributeType)))
 					throw new Exception("You (Developer) need to add an [Authorize] or [AllowAnonymous] attribute on this controller or method");
 			}
 			else
@@ -31,6 +31,12 @@ namespace Torutek.Auth
 				throw new Exception("Not sure how to enforce [Authorize]/[AllowAnonymous] Attributes on this thing");
 			}
 			return Task.FromResult(true);
+		}
+
+		private bool IsSameOrSubclass(Type potentialBase, Type potentialDescendant)
+		{
+			return potentialDescendant.IsSubclassOf(potentialBase)
+				   || potentialDescendant == potentialBase;
 		}
 	}
 }
