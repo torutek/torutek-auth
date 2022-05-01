@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Torutek.Auth.Jwt
@@ -21,7 +22,7 @@ namespace Torutek.Auth.Jwt
 		/// <param name="secretKey">The secret key to be used to sign and validate JWTs. Should be big and kept secret</param>
 		/// <param name="environment"></param>
 		/// <param name="events">Optionally, you can provide an events object so you can handle JWT related events</param>
-		public static void AddJwtServices(this IServiceCollection serviceCollection, string issuer, string secretKey, IHostingEnvironment environment, JwtBearerEvents events = null)
+		public static void AddJwtServices(this IServiceCollection serviceCollection, string issuer, string secretKey, IWebHostEnvironment environment, JwtBearerEvents events = null)
 		{
 			var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 			var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
@@ -35,7 +36,7 @@ namespace Torutek.Auth.Jwt
 				.AddJwtBearer(o => CreateJwtBearerOptions(o, issuer, signingKey, environment, events));
 		}
 
-		private static void CreateJwtBearerOptions(JwtBearerOptions o, string issuer, SymmetricSecurityKey signingKey, IHostingEnvironment environment, JwtBearerEvents events)
+		private static void CreateJwtBearerOptions(JwtBearerOptions o, string issuer, SymmetricSecurityKey signingKey, IWebHostEnvironment environment, JwtBearerEvents events)
 		{
 			if (environment.IsDevelopment())
 			{
